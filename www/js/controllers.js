@@ -30,6 +30,7 @@ angular.module('starter.controllers', [])
 
       $timeout(function () {
         $scope.closeLogin();
+        $rootScope.loggedIn = true
       }, 1000);
     };
 
@@ -56,7 +57,6 @@ angular.module('starter.controllers', [])
     }
 
   })
-
 
   .controller('PlaylistsCtrl', function ($scope) {
     $scope.playlists = [
