@@ -1,4 +1,5 @@
 {
-  "name": "ionic",
-  "app_id": ""
+  "name": "appistack",
+  "app_id": "",
+  "gulpStartupTasks": ["config"]
 }

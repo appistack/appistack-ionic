@@ -1,0 +1,16 @@
+{
+  "common": {
+    "apiProtocol": "http",
+    "apiHost": "localhost:3000",
+    "apiUrl": "/api/v1",
+    "assetsUrl": "//localhost:8000/"
+  },
+  "development": {
+    "apiHost": "api.appistack.dev:3000"
+  },
+  "production": {
+    "apiProtocol": "https",
+    "apiHost": "appistack-rails.herokuapp.com",
+    "assetsUrl": "//appistack.com/"
+  }
+}

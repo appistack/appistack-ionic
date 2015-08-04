@@ -1,17 +1,41 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var bower = require('bower');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var sh = require('shelljs');
+var gulp = require('gulp'),
+  gutil = require('gulp-util'),
+  bower = require('bower'),
+  concat = require('gulp-concat'),
+  sass = require('gulp-sass'),
+  minifyCss = require('gulp-minify-css'),
+  rename = require('gulp-rename'),
+  sh = require('shelljs'),
+  _ = require('underscore'),
+  ngConstant = require('gulp-ng-constant'),
+  pkg = require('./package.json'),
+  config = require('./config.json');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+var node_env = process.env.NODE_ENV || 'development',
+  conf = _.extend(
+    _.pick(pkg, 'title', 'description', 'author'),
+    config['common'],
+    config[node_env]
+  );
+
+gulp.task('default', ['config', 'sass']);
+
+gulp.task('config', function() {
+  conf['apiHost'] = conf['apiProtocol'] + '://' + conf['apiHost'];
+  conf['apiUrl'] = conf['apiHost'] + conf['apiUrl'];
+
+  return ngConstant({
+      name: 'appistack.config',
+      stream: true,
+      constants: { ENV: conf }
+    })
+    .pipe(concat('config.js'))
+    .pipe(gulp.dest('www/js'));
+});
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
