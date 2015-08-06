@@ -3,6 +3,7 @@
     "apiProtocol": "http",
     "apiHost": "localhost:3000",
     "apiUrl": "/api/v1",
+    "webUrl": "http://localhost:8000/",
     "assetsUrl": "//localhost:8000/"
   },
   "development": {
@@ -11,6 +12,7 @@
   "production": {
     "apiProtocol": "https",
     "apiHost": "appistack-rails.herokuapp.com",
+    "webUrl": "http://appistack.com/",
     "assetsUrl": "//appistack.com/"
   }
 }
