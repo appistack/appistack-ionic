@@ -29,6 +29,26 @@ angular.module('appistack', [
     //TODO: pull token/etc from keychain?
   })
 
+  .config(function(RestangularProvider, ENV) {
+    RestangularProvider.setBaseUrl(ENV.apiUrl);
+    RestangularProvider.setDefaultHeaders({
+      'Content-Type': 'application/json;charset=UTF-8',
+      'Accept': 'application/json,text/plain;version=1'
+    })
+  })
+
+  .config(function($authProvider, ENV) {
+    $authProvider.configure({
+      apiUrl: ENV.apiHost,
+      validateOnPageLoad: true,
+      confirmationSuccessUrl: ENV.webUrl,
+      passwordResetSuccessUrl: ENV.webUrl + '/password/change',
+      authProviderPaths: {
+        google_oauth2: '/auth/google_oauth2'
+      }
+    });
+  })
+
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 
