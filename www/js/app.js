@@ -1,4 +1,12 @@
-angular.module('appistack', ['ionic', 'appistack.controllers'])
+angular.module('appistack', [
+  'ionic',
+  'ipCookie',
+  'ng-token-auth',
+  'restangular',
+  'appistack.config',
+  'appistack.controllers',
+  'appistack.services'])
+
   .run(function ($rootScope, $ionicPlatform) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

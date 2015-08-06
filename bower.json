@@ -2,6 +2,9 @@
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.1"
+    "ionic": "driftyco/ionic-bower#1.0.1",
+    "ng-token-auth": "~0.0.27",
+    "restangular": "~1.5.1",
+    "angular-cookie": "~4.0.9"
   }
 }
