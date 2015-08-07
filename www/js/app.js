@@ -25,7 +25,7 @@ angular.module('appistack', [
     });
   })
 
-  .config(function(RestangularProvider, ENV) {
+  .config(function (RestangularProvider, ENV) {
     RestangularProvider.setBaseUrl(ENV.apiUrl);
     RestangularProvider.setDefaultHeaders({
       'Content-Type': 'application/json;charset=UTF-8',
@@ -33,7 +33,7 @@ angular.module('appistack', [
     })
   })
 
-  .config(function($authProvider, ENV) {
+  .config(function ($authProvider, ENV) {
     $authProvider.configure({
       apiUrl: ENV.apiHost,
       validateOnPageLoad: true,
@@ -70,21 +70,54 @@ angular.module('appistack', [
         }
       })
 
+      .state('app.settings', {
+        url: '/settings',
+        views: {
+          'menuContent': {
+            controller: 'UserEditCtrl',
+            templateUrl: 'templates/users/edit.html'
+          }
+        }
+      })
+
+      .state('app.user', {
+        url: '/users/:id',
+        views: {
+          'menuContent': {
+            controller: 'UserDetailCtrl',
+            templateUrl: 'templates/users/detail.html'
+          }
+        },
+        resolve: {
+          user: function ($stateParams, Users, $ionicLoading) {
+            console.log($stateParams);
+            $ionicLoading.show({ template: 'Loading ...' });
+            return Users.one($stateParams.id).get().then(function(user) {
+              $ionicLoading.hide();
+              return user;
+            }, function(res) {
+              $ionicLoading.hide();
+              //TODO: handle error
+            });
+          }
+        }
+      })
+
       .state('app.users', {
         url: '/users',
         views: {
           'menuContent': {
             controller: 'UsersCtrl',
-            templateUrl: 'templates/users.html',
+            templateUrl: 'templates/users/index.html',
             resolve: {
               auth: authRoute,
               users: function (Users, $ionicLoading) {
                 //TODO: alternatively, use a restangular/$http intercepter and broadcast loading events on $rootScope
-                $ionicLoading.show({ template: 'Loading ...' });
-                return Users.getList().then(function(users) {
+                $ionicLoading.show({template: 'Loading ...'});
+                return Users.getList().then(function (users) {
                   $ionicLoading.hide();
                   return users;
-                }, function(res) {
+                }, function (res) {
                   //TODO: handle error
                   $ionicLoading.hide();
                   return [];
@@ -100,15 +133,15 @@ angular.module('appistack', [
         views: {
           'menuContent': {
             controller: 'ArtistsCtrl',
-            templateUrl: 'templates/artists.html',
+            templateUrl: 'templates/artists/index.html',
             resolve: {
               auth: authRoute,
               artists: function (Artists, $ionicLoading) {
-                $ionicLoading.show({ template: 'Loading ...' });
-                return Artists.getList().then(function(users) {
+                $ionicLoading.show({template: 'Loading ...'});
+                return Artists.getList().then(function (users) {
                   $ionicLoading.hide();
                   return users;
-                }, function(res) {
+                }, function (res) {
                   //TODO: handle error
                   $ionicLoading.hide();
                   return [];
