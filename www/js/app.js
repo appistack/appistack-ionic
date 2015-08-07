@@ -46,8 +46,14 @@ angular.module('appistack', [
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {
-    $stateProvider
+    function authRoute($auth, $state, $rootScope) {
+      return $auth.validateUser()
+        .catch(function(res) {
+          $state.go('app.home');
+        });
+    }
 
+    $stateProvider
       .state('app', {
         url: '/app',
         abstract: true,
@@ -60,6 +66,55 @@ angular.module('appistack', [
         views: {
           'menuContent': {
             templateUrl: 'templates/home.html'
+          }
+        }
+      })
+
+      .state('app.users', {
+        url: '/users',
+        views: {
+          'menuContent': {
+            controller: 'UsersCtrl',
+            templateUrl: 'templates/users.html',
+            resolve: {
+              auth: authRoute,
+              users: function (Users, $ionicLoading) {
+                //TODO: alternatively, use a restangular/$http intercepter and broadcast loading events on $rootScope
+                $ionicLoading.show({ template: 'Loading ...' });
+                return Users.getList().then(function(users) {
+                  $ionicLoading.hide();
+                  return users;
+                }, function(res) {
+                  //TODO: handle error
+                  $ionicLoading.hide();
+                  return [];
+                });
+              }
+            }
+          }
+        }
+      })
+
+      .state('app.artists', {
+        url: '/artists',
+        views: {
+          'menuContent': {
+            controller: 'ArtistsCtrl',
+            templateUrl: 'templates/artists.html',
+            resolve: {
+              auth: authRoute,
+              artists: function (Artists, $ionicLoading) {
+                $ionicLoading.show({ template: 'Loading ...' });
+                return Artists.getList().then(function(users) {
+                  $ionicLoading.hide();
+                  return users;
+                }, function(res) {
+                  //TODO: handle error
+                  $ionicLoading.hide();
+                  return [];
+                });
+              }
+            }
           }
         }
       })

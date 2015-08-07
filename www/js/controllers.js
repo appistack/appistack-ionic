@@ -82,6 +82,14 @@ angular.module('appistack.controllers', [])
 
   })
 
+  .controller('UsersCtrl', function ($scope, users, $ionicLoading) {
+    $scope.users = users;
+  })
+
+  .controller('ArtistsCtrl', function ($scope, artists, $ionicLoading) {
+    $scope.artists = artists;
+  })
+
   .controller('PlaylistsCtrl', function ($scope) {
     $scope.playlists = [
       {title: 'Reggae', id: 1},
