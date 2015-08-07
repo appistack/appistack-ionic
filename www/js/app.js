@@ -127,10 +127,26 @@ angular.module('appistack', [
         }
       })
 
+      .state('app.artist', {
+        url: '/artists/:id',
+        views: {
+          menuContent: {
+            controller: 'ArtistDetailCtrl',
+            templateUrl: 'templates/artists/detail.html'
+          }
+        },
+        resolve: {
+          auth: authRoute,
+          artist: function($stateParams, Artists) {
+            return Artists.one($stateParams.id).get();
+          }
+        }
+      })
+
       .state('app.artists', {
         url: '/artists',
         views: {
-          'menuContent': {
+          menuContent: {
             controller: 'ArtistsCtrl',
             templateUrl: 'templates/artists/index.html'
           }
