@@ -89,16 +89,8 @@ angular.module('appistack', [
           }
         },
         resolve: {
-          user: function ($stateParams, Users, $ionicLoading) {
-            console.log($stateParams);
-            $ionicLoading.show({ template: 'Loading ...' });
-            return Users.one($stateParams.id).get().then(function(user) {
-              $ionicLoading.hide();
-              return user;
-            }, function(res) {
-              $ionicLoading.hide();
-              //TODO: handle error
-            });
+          user: function ($stateParams, Users) {
+            return Users.one($stateParams.id).get();
           }
         }
       })
