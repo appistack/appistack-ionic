@@ -77,6 +77,12 @@ angular.module('appistack', [
             controller: 'UserEditCtrl',
             templateUrl: 'templates/users/edit.html'
           }
+        },
+        resolve: {
+          auth: authRoute,
+          user: function(Users, $auth) {
+            return Users.one($auth.user.id).get();
+          }
         }
       })
 
@@ -89,6 +95,7 @@ angular.module('appistack', [
           }
         },
         resolve: {
+          auth: authRoute,
           user: function ($stateParams, Users) {
             return Users.one($stateParams.id).get();
           }
