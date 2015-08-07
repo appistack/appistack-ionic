@@ -1,0 +1,11 @@
+<ion-view view-title="Users">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="user in users" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/user/{{user.id}}">
+        <img src="{{user.gravatarUrl()}}">
+        <h2>{{user.username}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
