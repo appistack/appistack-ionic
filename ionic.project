@@ -1,5 +1,14 @@
 {
   "name": "appistack",
   "app_id": "",
-  "gulpStartupTasks": ["config"]
+  "gulpStartupTasks": [
+    "config"
+  ],
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }
