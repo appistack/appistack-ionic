@@ -1,5 +1,5 @@
 angular.module('appistack.controllers', [])
-  .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+  .controller('AppCtrl', function ($scope, $state, $ionicModal, $auth) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -9,7 +9,9 @@ angular.module('appistack.controllers', [])
     //});
 
     $scope.loginData = {};
+    $scope.loginAlerts = [];
     $scope.signupData = {};
+    $scope.signupAlerts = [];
 
     $ionicModal.fromTemplateUrl('templates/login.html', {
       scope: $scope
@@ -26,12 +28,19 @@ angular.module('appistack.controllers', [])
     };
 
     $scope.doLogin = function () {
-      console.log('Doing login', $scope.loginData);
-
-      $timeout(function () {
-        $scope.closeLogin();
-        $rootScope.loggedIn = true
-      }, 1000);
+      $scope.loginAlerts = [];
+      $auth.submitLogin($scope.loginData)
+        .then(function (res) {
+          $scope.loginAlerts = [];
+          $scope.loginModal.hide();
+          //TODO: nav to home
+        })
+        .catch(function (res) {
+          $scope.loginAlerts = _.map(res.errors, function (e) {
+            return {type: 'error', msg: e};
+          });
+          $scope.openLoginModal();
+        });
     };
 
     $ionicModal.fromTemplateUrl('templates/signup.html', {
@@ -49,12 +58,27 @@ angular.module('appistack.controllers', [])
     };
 
     $scope.doSignup = function () {
-      console.log('Doing signup', $scope.signupData);
-
-      $timeout(function () {
-        $scope.closeLogin();
-      }, 1000);
-    }
+      $scope.signupAlerts = [];
+      $auth.submitRegistration({
+        email: $scope.signupData.email,
+        username: $scope.signupData,
+        password: $scope.signupData,
+        password_confirmation: $scope.signupData.passwordConfirmation
+      })
+        .then(function (res) {
+          $scope.signupAlerts = [];
+          $scope.signupModal.hide();
+          //TODO: prompt user to confirm their account
+          //TODO: nav to login
+        })
+        .catch(function (res) {
+          if (res.status == 401 || res.status == 403) {
+            $scope.signupAlerts = _.map(res.data.errors.full_messages, function (msg) {
+              return {type: "error", msg: msg};
+            });
+          }
+        });
+    };
 
   })
 
