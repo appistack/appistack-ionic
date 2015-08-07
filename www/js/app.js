@@ -108,22 +108,22 @@ angular.module('appistack', [
         views: {
           'menuContent': {
             controller: 'UsersCtrl',
-            templateUrl: 'templates/users/index.html',
-            resolve: {
-              auth: authRoute,
-              users: function (Users, $ionicLoading) {
-                //TODO: alternatively, use a restangular/$http intercepter and broadcast loading events on $rootScope
-                $ionicLoading.show({template: 'Loading ...'});
-                return Users.getList().then(function (users) {
-                  $ionicLoading.hide();
-                  return users;
-                }, function (res) {
-                  //TODO: handle error
-                  $ionicLoading.hide();
-                  return [];
-                });
-              }
-            }
+            templateUrl: 'templates/users/index.html'
+          }
+        },
+        resolve: {
+          auth: authRoute,
+          users: function (Users, $ionicLoading) {
+            //TODO: alternatively, use a restangular/$http intercepter and broadcast loading events on $rootScope
+            $ionicLoading.show({template: 'Loading ...'});
+            return Users.getList().then(function (users) {
+              $ionicLoading.hide();
+              return users;
+            }, function (res) {
+              //TODO: handle error
+              $ionicLoading.hide();
+              return [];
+            });
           }
         }
       })
@@ -133,21 +133,21 @@ angular.module('appistack', [
         views: {
           'menuContent': {
             controller: 'ArtistsCtrl',
-            templateUrl: 'templates/artists/index.html',
-            resolve: {
-              auth: authRoute,
-              artists: function (Artists, $ionicLoading) {
-                $ionicLoading.show({template: 'Loading ...'});
-                return Artists.getList().then(function (users) {
-                  $ionicLoading.hide();
-                  return users;
-                }, function (res) {
-                  //TODO: handle error
-                  $ionicLoading.hide();
-                  return [];
-                });
-              }
-            }
+            templateUrl: 'templates/artists/index.html'
+          }
+        },
+        resolve: {
+          auth: authRoute,
+          artists: function (Artists, $ionicLoading) {
+            $ionicLoading.show({template: 'Loading ...'});
+            return Artists.getList().then(function (users) {
+              $ionicLoading.hide();
+              return users;
+            }, function (res) {
+              //TODO: handle error
+              $ionicLoading.hide();
+              return [];
+            });
           }
         }
       })
