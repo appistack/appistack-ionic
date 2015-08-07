@@ -1,7 +1,7 @@
 <ion-view view-title="Artists">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="artist in artists" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/artists/{{artist.id}}">
+      <ion-item ng-repeat="artist in artists" class="item-remove-animate item-avatar item-icon-right" type="item-text-wrap" href="#/app/artists/{{artist.id}}">
         <img src="{{artist.headshotUrl()}}">
         <h2>{{artist.fullName()}}</h2>
         <p>{{artist.description}}</p>
