@@ -7,7 +7,8 @@
     "assetsUrl": "//localhost:8000/"
   },
   "development": {
-    "apiHost": "api.appistack.dev:3000"
+    "apiHost": "api.appistack.dev:3000",
+    "webUrl": "appistack.dev:8000"
   },
   "production": {
     "apiProtocol": "https",
