@@ -24,16 +24,16 @@
         <ion-item menu-close ng-click="signup()" ng-show="!loggedIn">
           Sign Up
         </ion-item>
-        <ion-item menu-close href="#/app/artists" ng-show="loggedIn">
+        <ion-item menu-close ui-sref="app.artists" ng-show="loggedIn">
           Artists
         </ion-item>
-        <ion-item menu-close href="#/app/users" ng-show="loggedIn">
+        <ion-item menu-close ui-sref="app.users" ng-show="loggedIn">
           Users
         </ion-item>
-        <ion-item menu-close href="#/app/users/{{user.id}}" ng-show="loggedIn">
+        <ion-item menu-close ui-sref="app.user({user.id})" ng-show="loggedIn">
           Profile
         </ion-item>
-        <ion-item menu-close href="#/app/settings" ng-show="loggedIn">
+        <ion-item menu-close ui-sref="app.settings" ng-show="loggedIn">
           Settings
         </ion-item>
         <ion-item menu-close ng-click="signOut()" ng-show="loggedIn">
