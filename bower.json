@@ -6,6 +6,7 @@
     "ng-token-auth": "~0.0.27",
     "restangular": "~1.5.1",
     "angular-cookie": "~4.0.9",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-messages": "~1.4.3"
   }
 }

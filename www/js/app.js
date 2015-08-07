@@ -1,8 +1,10 @@
 angular.module('appistack', [
   'ionic',
+  'ngMessages',
   'ipCookie',
   'ng-token-auth',
   'restangular',
+  'appistack.auth',
   'appistack.config',
   'appistack.controllers',
   'appistack.services'])
