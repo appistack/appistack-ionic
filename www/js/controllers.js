@@ -82,11 +82,22 @@ angular.module('appistack.controllers', [])
 
   })
 
-  .controller('UsersCtrl', function ($scope, users, $ionicLoading) {
+  .controller('UsersCtrl', function ($scope, users) {
     $scope.users = users;
   })
 
-  .controller('ArtistsCtrl', function ($scope, artists, $ionicLoading) {
+  .controller('UserDetailCtrl', function($scope, user) {
+    $scope.user = user;
+  })
+
+  .controller('UserEditCtrl', function($scope, user) {
+    $scope.user = user;
+    $scope.submit = function() {
+
+    }
+  })
+
+  .controller('ArtistsCtrl', function ($scope, artists) {
     $scope.artists = artists;
   })
 
