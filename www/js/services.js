@@ -26,7 +26,7 @@ angular.module('appistack.services', [])
       };
 
       model.gravatarUrl = function(options) {
-        options = options || { size: 100 }
+        options = _.extend({ size: 100 }, options || {});
         return this.gravatar_url + "&s=" + options.size;
       };
 
