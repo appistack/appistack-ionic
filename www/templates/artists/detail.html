@@ -14,11 +14,11 @@
         <canvas id="spectrogram-canvas" class="spectrogram-canvas" style="width:100%; height:256px;"></canvas>
       </div>
 
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item"><i class="icon ion-play"></i></a>
-        <a class="tab-item"><i class="icon ion-mic-a"></i></a>
-        <a class="tab-item"><i class="icon ion-ios-color-filter"></i></a>
-        <a class="tab-item"><i class="icon ion-share"></i></a>
+      <div class="item tabs tabs-secondary tabs-icon-left" ng-show="sound.audiofile">
+        <a class="tab-item" on-touch="play()"><i class="icon ion-play"></i></a>
+        <a class="tab-item" on-touch="record()"><i class="icon ion-mic-a"></i></a>
+        <a class="tab-item" on-touch="score()"><i class="icon ion-ios-color-filter"></i></a>
+        <a class="tab-item" on-touch="submit()"><i class="icon ion-share"></i></a>
       </div>
     </div>
 
