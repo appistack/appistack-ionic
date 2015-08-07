@@ -64,7 +64,7 @@ angular.module('appistack', [
       .state('app.home', {
         url: '/home',
         views: {
-          'menuContent': {
+          menuContent: {
             templateUrl: 'templates/home.html'
           }
         }
@@ -73,7 +73,7 @@ angular.module('appistack', [
       .state('app.settings', {
         url: '/settings',
         views: {
-          'menuContent': {
+          menuContent: {
             controller: 'UserEditCtrl',
             templateUrl: 'templates/users/edit.html'
           }
@@ -89,7 +89,7 @@ angular.module('appistack', [
       .state('app.user', {
         url: '/users/:id',
         views: {
-          'menuContent': {
+          menuContent: {
             controller: 'UserDetailCtrl',
             templateUrl: 'templates/users/detail.html'
           }
@@ -105,7 +105,7 @@ angular.module('appistack', [
       .state('app.users', {
         url: '/users',
         views: {
-          'menuContent': {
+          menuContent: {
             controller: 'UsersCtrl',
             templateUrl: 'templates/users/index.html'
           }
@@ -154,7 +154,7 @@ angular.module('appistack', [
       .state('app.search', {
         url: '/search',
         views: {
-          'menuContent': {
+          menuContent: {
             templateUrl: 'templates/search.html'
           }
         }
@@ -163,7 +163,7 @@ angular.module('appistack', [
       .state('app.browse', {
         url: '/browse',
         views: {
-          'menuContent': {
+          menuContent: {
             templateUrl: 'templates/browse.html'
           }
         }
@@ -171,7 +171,7 @@ angular.module('appistack', [
       .state('app.playlists', {
         url: '/playlists',
         views: {
-          'menuContent': {
+          menuContent: {
             templateUrl: 'templates/playlists.html',
             controller: 'PlaylistsCtrl'
           }
@@ -181,7 +181,7 @@ angular.module('appistack', [
       .state('app.single', {
         url: '/playlists/:playlistId',
         views: {
-          'menuContent': {
+          menuContent: {
             templateUrl: 'templates/playlist.html',
             controller: 'PlaylistCtrl'
           }
