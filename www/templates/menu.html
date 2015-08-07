@@ -19,7 +19,7 @@
     <ion-content>
       <ion-list>
         <ion-item menu-close ng-click="login()" ng-show="!loggedIn">
-          Login
+          Log In
         </ion-item>
         <ion-item menu-close ng-click="signup()" ng-show="!loggedIn">
           Sign Up
@@ -32,6 +32,9 @@
         </ion-item>
         <ion-item menu-close href="#/app/playlists" ng-show="loggedIn">
           Playlists
+        </ion-item>
+        <ion-item menu-close ng-click="signOut()" ng-show="loggedIn">
+          Log Out
         </ion-item>
       </ion-list>
     </ion-content>
