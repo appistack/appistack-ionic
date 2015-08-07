@@ -36,4 +36,27 @@ angular.module('appistack.services', [])
     return User;
   })
 
+  .factory('Sounds', function (RestDefaults, ENV) {
+    RestDefaults.extendModel('sounds', function(model) {
+      model.audiofileUrl = function() {
+        return ENV.assetsUrl + this.audiofile;
+      };
+
+      return model;
+    });
+
+    return RestDefaults.service('sounds');
+  })
+
+  .factory('Artists', function(RestDefaults, ENV) {
+    RestDefaults.extendModel('artists', function(model) {
+      model.headshotUrl = function() {
+        return ENV.assetsUrl + this.headshot;
+      };
+      return model;
+    });
+
+    return RestDefaults.service('artists');
+  });
+
 ;
