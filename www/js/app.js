@@ -7,6 +7,7 @@ angular.module('appistack', [
   'appistack.auth',
   'appistack.config',
   'appistack.controllers',
+  'appistack.spectro',
   'appistack.services'])
 
   .run(function ($rootScope, $ionicPlatform) {
@@ -161,6 +162,8 @@ angular.module('appistack', [
         },
         resolve: {
           auth: authRoute,
+          audio: function (SpectroAudio) { return SpectroAudio; },
+          mic: function (SpectroMic) { return SpectroMic; },
           artist: function($stateParams, Artists) {
             return Artists.one($stateParams.id).get();
           }
@@ -171,3 +174,20 @@ angular.module('appistack', [
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/home');
   });
+
+navigator.getUserMedia =
+  (navigator.webkitGetUserMedia ||
+  navigator.mozGetUserMedia ||
+  navigator.msGetUserMedia);
+
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+window.requestAnimationFrame = (function (){
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function(cb, el) {
+      window.setTimeout(cb, 1000 / 60)
+    };
+})();
