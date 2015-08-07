@@ -1,0 +1,30 @@
+<ion-view view-title="Settings">
+  <ion-content>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="{{user.gravatarUrl()}}">
+        <h2>
+          @{{user.username}}
+        </h2>
+        <p>{{user.email}}</p>
+      </div>
+    </div>
+
+    <form id="user-edit-form" name="userEditForm" ng-submit="submit()" role="form">
+      <div class="list card">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Name</span>
+          <input type="text" value="{{user.name}}">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nickname</span>
+          <input type="text" value="{{user.nickname}}">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-positive" type="submit">Save</button>
+        <button class="button button-block button-positive">Update Photo</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

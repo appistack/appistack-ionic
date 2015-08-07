@@ -90,11 +90,17 @@ angular.module('appistack.controllers', [])
     $scope.user = user;
   })
 
-  .controller('UserEditCtrl', function($scope, user) {
+  .controller('UserEditCtrl', function($scope, user, $state) {
     $scope.user = user;
     $scope.submit = function() {
+      $scope.user.save().then(function(res) {
+        $state.go('app.user', {id: $scope.user.id});
+      });
+    };
+  })
 
-    }
+  .controller('ArtistDetailCtrl', function($scope, artist) {
+    $scope.artist = artist;
   })
 
   .controller('ArtistsCtrl', function ($scope, artists) {
