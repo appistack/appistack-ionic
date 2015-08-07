@@ -23,12 +23,6 @@ angular.module('appistack', [
         StatusBar.styleDefault();
       }
     });
-
-    $rootScope.loggedIn = false;
-    $rootScope.isLoggedIn = function() {
-      return !($rootScope.user === undefined || $rootScope === null);
-    };
-    //TODO: pull token/etc from keychain?
   })
 
   .config(function(RestangularProvider, ENV) {
