@@ -1,0 +1,33 @@
+<ion-view view-title="{{artist.fullName()}}">
+  <ion-content>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="{{artist.headshotUrl()}}">
+        <h2>
+          {{artist.fullName()}}
+        </h2>
+        <p>{{artist.description}}</p>
+      </div>
+
+      <div class="item item-image">
+        <audio id="spectrogram-audio"></audio>
+        <canvas id="spectrogram-canvas" class="spectrogram-canvas" style="width:100%; height:256px;"></canvas>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item"><i class="icon ion-play"></i></a>
+        <a class="tab-item"><i class="icon ion-mic-a"></i></a>
+        <a class="tab-item"><i class="icon ion-ios-color-filter"></i></a>
+        <a class="tab-item"><i class="icon ion-share"></i></a>
+      </div>
+    </div>
+
+    <ion-list style="height: auto;">
+      <ion-item ng-repeat="sound in artist.sounds" class="item-icon-right" ui-sref="sound({id: sound.id})" ng-disabled="!sound.audiofile" >
+        <h2>{{sound.name}}</h2>
+        <p>{{sound.description}}</p>
+        <i ng-show="sound.audiofile" class="play-icon icon ion-ios-play"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
