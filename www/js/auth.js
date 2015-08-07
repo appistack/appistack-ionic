@@ -21,7 +21,7 @@ angular.module('appistack.auth', [])
 
     function logoutSuccess(ev) {
       setLoggedOut();
-      $state.go('app');
+      $state.go('app.home');
     }
 
     function logoutError(ev, reason) {
