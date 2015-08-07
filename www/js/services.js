@@ -50,6 +50,9 @@ angular.module('appistack.services', [])
 
   .factory('Artists', function(RestDefaults, ENV) {
     RestDefaults.extendModel('artists', function(model) {
+      model.fullName = function() {
+        return this.first_name + ' ' + this.last_name;
+      };
       model.headshotUrl = function() {
         return ENV.assetsUrl + this.headshot;
       };
