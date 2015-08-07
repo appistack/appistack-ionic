@@ -30,7 +30,10 @@
         <ion-item menu-close href="#/app/users" ng-show="loggedIn">
           Users
         </ion-item>
-        <ion-item menu-close href="#/app/playlists" ng-show="loggedIn">
+        <ion-item menu-close href="#/app/users/{{user.id}}" ng-show="loggedIn">
+          Profile
+        </ion-item>
+        <ion-item menu-close href="#/app/settings" ng-show="loggedIn">
           Settings
         </ion-item>
         <ion-item menu-close ng-click="signOut()" ng-show="loggedIn">
