@@ -17,6 +17,7 @@ angular.module('appistack.services', [])
 
   .factory('Users', function (RestDefaults, ENV) {
     var User = RestDefaults.service('users');
+
     RestDefaults.extendModel('users', function(model) {
       model.isAdmin = function() {
         return _.chain(this.roles)
@@ -37,6 +38,8 @@ angular.module('appistack.services', [])
   })
 
   .factory('Sounds', function (RestDefaults, ENV) {
+    var Sound = RestDefaults.service('sounds');
+
     RestDefaults.extendModel('sounds', function(model) {
       model.audiofileUrl = function() {
         return ENV.assetsUrl + this.audiofile;
@@ -45,10 +48,12 @@ angular.module('appistack.services', [])
       return model;
     });
 
-    return RestDefaults.service('sounds');
+    return Sound;
   })
 
   .factory('Artists', function(RestDefaults, ENV) {
+    var Artist = RestDefaults.service('artists');
+
     RestDefaults.extendModel('artists', function(model) {
       model.fullName = function() {
         return this.first_name + ' ' + this.last_name;
@@ -59,7 +64,7 @@ angular.module('appistack.services', [])
       return model;
     });
 
-    return RestDefaults.service('artists');
+    return Artist;
   });
 
 ;
