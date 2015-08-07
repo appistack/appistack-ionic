@@ -1,6 +1,14 @@
 ## Appistack Ionic
 
-This template is still in progress.  Should be finished in the next day or two.
+An ionic implementation of [appistack-angular](https://github.com/appistack/appistack-ng).
+
+### Current Issues
+
+So this runs with `ionic serve`, but I'm seeing some different behavior in the emulators.  Neither platforms render
+static images stored within the applcation bc .. I have no idea.  Otherwise, the app works fairly well on iOS, until
+you try to access a screen that uses WebAudio.  Then Angular crashes.  On Android, the app doesn't retain login data
+after logging in.  Headers aren't passed to the API on subsequent requests.  This would be *super fun* to track down
+using a remote chrome debugging instance.
 
 ### Configuring For Multiple Environments
 
